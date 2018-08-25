@@ -1,0 +1,35 @@
+<head>
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+</head>
+<body>
+<form action="{% url 'shortener:short'%}" role="form" class="form-inline" method="post">
+    <div class="form-group">
+        <label class="sr-only" for="exampleInputEmail2"></label>
+        <input name="text" class="form-control" id="exampleInputEmail2" placeholder="Enter link">
+    </div>
+    <button type="submit" class="btn btn-default">Shorten</button>
+    <a href="{% url 'shortener:logout' %}">Logout</a>
+    {% csrf_token %}
+<table border="1" class="table table-bordered">
+    {% for link in links %}
+        <tr>
+            <td>
+                {{link.pub_date}}
+            </td>
+            <td>
+                {{link.original_link}}
+            </td>
+            <td>
+                <a href="{% url 'shortener:redirect' link.short_tag %}">
+                    {{link.short_link}}
+                </a>
+            </td>
+            <td>
+                {{link.transitions}}
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+</form>
+</body>

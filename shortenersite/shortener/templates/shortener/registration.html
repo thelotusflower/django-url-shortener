@@ -1,0 +1,26 @@
+<head>
+	{% load bootstrap3 %}
+    {% bootstrap_css %}
+</head>
+<body>
+<form action="{% url 'shortener:registration'%}" method="post" role="form" class="form-inline">
+	<div class="form-group">
+		<label class="sr-only" for="exampleInputUser">User</label>
+		<h3>Username</h3>
+	    <input name="user" maxlength="20" class="form-control">
+	</div>
+	<div class="form-group">
+		<label class="sr-only" for="exampleInputPass">Passw</label>
+	    <h3>Password</h3>
+	    <input type="password" name="password" maxlength="20" class="form-control">
+	</div>
+	<div class="form-group">
+		<label class="sr-only" for="exampleInputEmail">Email</label>
+	    <h3>Email</h3>
+	    <input type="" name="email" class="form-control">
+	 <button type="submit" class="btn btn-default">Register</button>
+	 </div>
+    {% csrf_token %}
+</form>
+<h4>{{error}}</h4>
+</body>
